@@ -1,7 +1,6 @@
-# Ragevolt
+# Ragevolt Y10
 
-**Ragevolt** is a cutting-edge project focused on creating ultra-realistic mini PC simulations. We don’t just simulate hardware — we bring the *essence* of high-performance computing into a virtual, customizable, and lightweight environment.
-
+**Ragevolt Y** series including mid-range PC models.
 ## Our Flagship Model: RAGEVOLT R1
 
 The **RAGEVOLT R1** is our first masterpiece, packing a simulated **GeForce RTX 5090 GPU** — yeah, the beast itself. This model delivers top-tier graphical power in a mini PC simulation that pushes the limits of what virtual hardware can do.
