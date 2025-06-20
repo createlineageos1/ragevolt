@@ -1,4 +1,4 @@
-# Ragevolt
+# Ragevolt R1
 
 **Ragevolt** is a cutting-edge project focused on creating ultra-realistic mini PC simulations. We don’t just simulate hardware — we bring the *essence* of high-performance computing into a virtual, customizable, and lightweight environment.
 
