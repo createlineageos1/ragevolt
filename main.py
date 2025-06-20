@@ -2,14 +2,19 @@ import random
 import time
 import os
 
-model = "RAGEVOLT R1"
+model = "RAGEVOLT Y10"
 
-def gb(x): return x * 1024**3
-def mb(x): return x * 1024**2
-def fmt(byte): return f"{byte / (1024**3):.2f} GB"
+def gb(x): 
+    return x * 1024**3
+
+def mb(x): 
+    return x * 1024**2
+
+def fmt(byte): 
+    return f"{byte / (1024**3):.2f} GB"
 
 class CPU:
-    def __init__(self, name="Ryzen 9 9950X", cores=16, ghz=5.7):
+    def __init__(self, name="Ryzen 5 7600", cores=6, ghz=3.8):
         self.name = name
         self.cores = cores
         self.ghz = ghz
@@ -23,7 +28,7 @@ class CPU:
         return self.tdp * (cycles / 1e6)
 
 class GPU:
-    def __init__(self, model="NVIDIA GeForce RTX 5090", vram_gb=24):
+    def __init__(self, model="NVIDIA GeForce RTX 4060", vram_gb=6):
         self.model = model
         self.vram = gb(vram_gb)
         self.used = 0
@@ -42,7 +47,7 @@ class GPU:
         print(f"🧹 VRAM cleared | Now: {fmt(self.used)}")
 
 class RAM:
-    def __init__(self, capacity_gb=64):
+    def __init__(self, capacity_gb=16):
         self.total = gb(capacity_gb)
         self.used = 0
 
@@ -50,7 +55,7 @@ class RAM:
         if self.used + amount > self.total:
             raise MemoryError("💥 RAM FULL!")
         self.used += amount
-        print(f"📦 RAM Alloc: {fmt(amount)} | Used: {fmt(self.used)} / {fmt(self.total)}")
+        print(f"📦 RAM Allocated: {fmt(amount)} | Used: {fmt(self.used)} / {fmt(self.total)}")
 
     def free(self, amount):
         self.used = max(0, self.used - amount)
@@ -79,7 +84,7 @@ class PSU:
         total = cpu_watt + gpu_watt
         if total > self.max_watt:
             raise RuntimeError(f"🔥 PSU OVERLOAD! Drawing {total}W")
-        print(f"⚡ PSU draw: {total}W / {self.max_watt}W")
+        print(f"⚡ PSU drawing: {total}W / {self.max_watt}W")
 
 class PyREALOS:
     def __init__(self):
@@ -101,12 +106,13 @@ class PyREALOS:
             try:
                 cmd = input("shell $ ").strip().lower()
                 if cmd == "help":
-                    print("Komutlar: help, status, play, shutdown, vram, ramfree, diskdel, gpuinfo")
+                    print("Commands: help, status, play, shutdown, vram, ramfree, diskdel, gpuinfo, benchmark")
                 elif cmd == "status":
                     print(f"🧠 CPU Cycles: {self.cpu.cycles}")
                     print(f"🎮 VRAM Used: {fmt(self.gpu.used)} / {fmt(self.gpu.vram)}")
                     print(f"📦 RAM Used: {fmt(self.ram.used)} / {fmt(self.ram.total)}")
                     print(f"💽 Disk Used: {fmt(self.disk.used)} / {fmt(self.disk.capacity)}")
+                    print("Model:", model)
                 elif cmd == "play":
                     self.cpu.execute(20_000_000)
                     self.gpu.render()
@@ -120,7 +126,7 @@ class PyREALOS:
                     self.disk.delete(mb(512))
                     break
                 elif cmd == "vram":
-                    print(f"🎮 VRAM Kullanımı: {fmt(self.gpu.used)} / {fmt(self.gpu.vram)}")
+                    print(f"🎮 VRAM Usage: {fmt(self.gpu.used)} / {fmt(self.gpu.vram)}")
                 elif cmd == "ramfree":
                     amt = mb(1024)
                     self.ram.free(amt)
@@ -132,18 +138,18 @@ class PyREALOS:
                     print(f"🧩 VRAM Total: {fmt(self.gpu.vram)}")
                     print(f"📊 VRAM Used: {fmt(self.gpu.used)}")
                 elif cmd == "benchmark":
-                    print("🧪 Benchmark başlatılıyor...")
+                    print("🧪 Starting benchmark...")
                     self.cpu.execute(100_000_000)
-                    for _ in range(3): self.gpu.render()
+                    for _ in range(3):
+                        self.gpu.render()
                     self.ram.alloc(mb(4096))
                     self.disk.write(mb(2048))
                     self.psu.draw(cpu_watt=200, gpu_watt=400)
-                    print("✅ Benchmark tamamlandı!")
+                    print("✅ Benchmark completed!")
                 else:
-                    print("❌ Bilinmeyen komut.")
+                    print("❌ Unknown command.")
             except Exception as e:
-                print("⚠️ Hata:", e)
-
+                print("⚠️ Error:", e)
 
 if __name__ == "__main__":
     os.system("cls" if os.name == "nt" else "clear")
