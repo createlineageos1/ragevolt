@@ -107,6 +107,7 @@ class PyREALOS:
                     print(f"🎮 VRAM Used: {fmt(self.gpu.used)} / {fmt(self.gpu.vram)}")
                     print(f"📦 RAM Used: {fmt(self.ram.used)} / {fmt(self.ram.total)}")
                     print(f"💽 Disk Used: {fmt(self.disk.used)} / {fmt(self.disk.capacity)}")
+                    print("Model:", model)
                 elif cmd == "play":
                     self.cpu.execute(20_000_000)
                     self.gpu.render()
