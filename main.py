@@ -50,7 +50,7 @@ class RAM:
         if self.used + amount > self.total:
             raise MemoryError("💥 RAM FULL!")
         self.used += amount
-        print(f"📦 RAM Alloc: {fmt(amount)} | Used: {fmt(self.used)} / {fmt(self.total)}")
+        print(f"📦 RAM Allocated: {fmt(amount)} | Used: {fmt(self.used)} / {fmt(self.total)}")
 
     def free(self, amount):
         self.used = max(0, self.used - amount)
@@ -101,7 +101,7 @@ class PyREALOS:
             try:
                 cmd = input("shell $ ").strip().lower()
                 if cmd == "help":
-                    print("Komutlar: help, status, play, shutdown, vram, ramfree, diskdel, gpuinfo")
+                    print("Commands: help, status, play, shutdown, vram, ramfree, diskdel, gpuinfo, benchmark")
                 elif cmd == "status":
                     print(f"🧠 CPU Cycles: {self.cpu.cycles}")
                     print(f"🎮 VRAM Used: {fmt(self.gpu.used)} / {fmt(self.gpu.vram)}")
@@ -120,7 +120,7 @@ class PyREALOS:
                     self.disk.delete(mb(512))
                     break
                 elif cmd == "vram":
-                    print(f"🎮 VRAM Kullanımı: {fmt(self.gpu.used)} / {fmt(self.gpu.vram)}")
+                    print(f"🎮 VRAM Usage: {fmt(self.gpu.used)} / {fmt(self.gpu.vram)}")
                 elif cmd == "ramfree":
                     amt = mb(1024)
                     self.ram.free(amt)
@@ -132,18 +132,18 @@ class PyREALOS:
                     print(f"🧩 VRAM Total: {fmt(self.gpu.vram)}")
                     print(f"📊 VRAM Used: {fmt(self.gpu.used)}")
                 elif cmd == "benchmark":
-                    print("🧪 Benchmark başlatılıyor...")
+                    print("🧪 Starting benchmark...")
                     self.cpu.execute(100_000_000)
-                    for _ in range(3): self.gpu.render()
+                    for _ in range(3): 
+                        self.gpu.render()
                     self.ram.alloc(mb(4096))
                     self.disk.write(mb(2048))
                     self.psu.draw(cpu_watt=200, gpu_watt=400)
-                    print("✅ Benchmark tamamlandı!")
+                    print("✅ Benchmark completed!")
                 else:
-                    print("❌ Bilinmeyen komut.")
+                    print("❌ Unknown command.")
             except Exception as e:
-                print("⚠️ Hata:", e)
-
+                print("⚠️ Error:", e)
 
 if __name__ == "__main__":
     os.system("cls" if os.name == "nt" else "clear")
