@@ -1,6 +1,6 @@
-# Ragevolt R1
+# Ragevolt SNC1
 
-**Ragevolt** is a cutting-edge project focused on creating ultra-realistic mini PC simulations. We don’t just simulate hardware — we bring the *essence* of high-performance computing into a virtual, customizable, and lightweight environment.
+**Ragevolt SNC1** is an netcat server-computer that has Tesla T4 GPU, 512GB RAM.
 
 ## Our Flagship Model: RAGEVOLT R1
 
@@ -8,7 +8,7 @@ The **RAGEVOLT R1** is our first masterpiece, packing a simulated **GeForce RTX 
 
 ### Key Features
 
-- **Next-Gen GPU/CPU Simulation:** Experience the raw power of the RTX 5090 and Ryzen 9 9950X simulated to run the most demanding graphical tasks.
+- **Next-Gen GPU/CPU Simulation:** Experience the raw power of the NVIDIA Tesla T4 and AMD EPYC 9654 simulated to run the most demanding graphical tasks.
 - **Modular and Customizable:** Tweak your virtual hardware components to fit your exact needs.
 - **Efficient Resource Usage:** Designed to run smoothly even on mid-range host systems, no need for a supercomputer IRL.
 
