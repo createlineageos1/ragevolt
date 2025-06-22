@@ -104,7 +104,7 @@ class PyREALOS_Server:
     def handle_client(self, client_socket, address):
         print(f"📡 Client connected: {address}")
         try:
-            client_socket.send(b"Welcome to pyREALOS Server. Type 'help' for commands.\n")
+            client_socket.send(b"Welcome to R A G E V O L T Server. Type 'help' for commands.\n")
         except Exception:
             client_socket.close()
             print(f"📴 Client disconnected early: {address}")
