@@ -9,7 +9,7 @@ def mb(x): return x * 1024**2
 def fmt(byte): return f"{byte / (1024**3):.2f} GB"
 
 class CPU:
-    def __init__(self, name="Ryzen 9 9950X", cores=16, ghz=5.7):
+    def __init__(self, name="Qualcomm Snapdragon X Elite RAGEVOLT CPU", cores=12, ghz=4.3):
         self.name = name
         self.cores = cores
         self.ghz = ghz
@@ -23,7 +23,7 @@ class CPU:
         return self.tdp * (cycles / 1e6)
 
 class GPU:
-    def __init__(self, model="NVIDIA GeForce RTX 5090", vram_gb=24):
+    def __init__(self, model="RAGEVOLT ADRENO X 150", vram_gb=10):
         self.model = model
         self.vram = gb(vram_gb)
         self.used = 0
